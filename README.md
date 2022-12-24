@@ -1,6 +1,9 @@
 # cloudflared-healtchecks.io
 A docker image running healthchecks.io and cloudflared to run on mogenius.
 
+To do
+  create actions pipeline the follow cloudflared and healtchecks releases
+
 ## Docker Compose
 ````
 ---
