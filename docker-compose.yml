@@ -1,0 +1,23 @@
+version: '3'
+services:
+  healthchecks:
+    environment:
+      SITE_ROOT: "healthchecks.ziggyds.be"
+      SITE_NAME: "healthchecks.ziggyds.be"
+      SUPERUSER_EMAIL: "change email"
+      SUPERUSER_PASSWORD: "change password"
+      DEBUG: "True"
+      REGISTRATION_OPEN: "False"
+      LANG: "C.UTF-8"
+      USE_PAYMENTS: "False"
+      DB_NAME: "/data/hc.sqlite"
+      PYTHONUNBUFFERED: 1
+      CLOUDFLARED_TUNNEL_TOKEN: "token here"
+    volumes:
+      - C:\Test\healthchecks\data:/data
+      - /data
+    working_dir: /app
+    ports:
+      - 8000:8000
+    image: ziggyds/cloudflared-healthchecks:latest
+    restart: unless-stopped
