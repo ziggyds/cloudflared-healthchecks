@@ -2,11 +2,12 @@ version: '3'
 services:
   healthchecks:
     environment:
+      SECRET_KEY: "YOUR_SECRET_KEY"
       SITE_ROOT: "healthchecks.ziggyds.be"
       SITE_NAME: "healthchecks.ziggyds.be"
       SUPERUSER_EMAIL: "change email"
       SUPERUSER_PASSWORD: "change password"
-      DEBUG: "True"
+      DEBUG: "False"
       REGISTRATION_OPEN: "False"
       LANG: "C.UTF-8"
       USE_PAYMENTS: "False"

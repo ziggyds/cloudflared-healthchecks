@@ -9,6 +9,7 @@ services:
   healthchecks:
     container_name: cloudflared-healthchecks
     environment:
+      SECRET_KEY: "YOUR_SECRET_KEY"
       SITE_ROOT: "site root"
       SITE_NAME: "site name"
       SUPERUSER_EMAIL: "email here"
@@ -21,7 +22,7 @@ services:
       PYTHONUNBUFFERED: 1
       CLOUDFLARED_TUNNEL_TOKEN: "tunnel token"
     volumes:
-      - ./mnt/user/appdata/cloudflared-healthchecks:/data
+      - /mnt/user/appdata/cloudflared-healthchecks:/data
     ports:
       - 8000:8000
     image: ziggyds/cloudflared-healthchecks:latest
