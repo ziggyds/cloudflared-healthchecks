@@ -3,7 +3,7 @@ FROM ziggyds/alpine-utils:latest AS init
 WORKDIR /healthchecks
 RUN export LATEST_RELEASE=$(curl -s https://api.github.com/repos/healthchecks/healthchecks/releases/latest | grep "tag_name" | cut -d'"' -f4) && \
     wget https://github.com/healthchecks/healthchecks/archive/refs/tags/$LATEST_RELEASE.zip && \
-    unzip $LATEST_RELEASE && rm -rf $LATEST_RELEASE.zip ./docker
+    unzip $LATEST_RELEASE && rm $LATEST_RELEASE.zip
 # Get latest cloudflared release
 WORKDIR /cloudflared
 RUN wget https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-amd64.deb
@@ -50,6 +50,7 @@ RUN groupadd  -g 1000 healthchecks && \
 
 # Copy latest healthchecks release
 COPY --from=builder /app /app
+RUN rm -rf /app/docker
 COPY --from=builder /wheels /wheels
 
 RUN pip install --no-cache /wheels/*

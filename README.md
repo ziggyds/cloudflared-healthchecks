@@ -12,6 +12,7 @@ services:
       SECRET_KEY: "YOUR_SECRET_KEY"
       SITE_ROOT: "site root"
       SITE_NAME: "site name"
+      PING_EMAIL_DOMAIN: "(sub)domain"
       SUPERUSER_EMAIL: "email here"
       SUPERUSER_PASSWORD: "password"
       DEBUG: "False"
