@@ -1,0 +1,18 @@
+name: test run
+on:
+  #push:
+  #  branches:
+  #    - "main"
+  # Manueel starte
+  workflow_dispatch:
+
+jobs:
+  docker:
+    runs-on: ubuntu-latest
+    steps:
+      -
+        name: test cli
+        run: | 
+          echo "$GITHUB.REPOSITORY"
+          echo "${GITHUB.REPOSITORY}"
+          echo "${GITHUB.REPOSITORY#*/}"
