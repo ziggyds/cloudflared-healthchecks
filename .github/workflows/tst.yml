@@ -13,6 +13,4 @@ jobs:
       -
         name: test cli
         run: | 
-          echo "$GITHUB.REPOSITORY"
-          echo "${GITHUB.REPOSITORY}"
-          echo "${GITHUB.REPOSITORY#*/}"
+          echo ${{ github.event.repository.name }}"
