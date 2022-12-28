@@ -2,6 +2,7 @@
 FROM ziggyds/alpine-utils:latest AS init
 WORKDIR /healthchecks
 RUN export LATEST_RELEASE=$(curl -s https://api.github.com/repos/healthchecks/healthchecks/releases/latest | grep "tag_name" | cut -d'"' -f4) && \
+	echo $LATEST_RELEASE && \
     wget https://github.com/healthchecks/healthchecks/archive/refs/tags/$LATEST_RELEASE.zip && \
     unzip $LATEST_RELEASE && rm $LATEST_RELEASE.zip
 # Get latest cloudflared release
