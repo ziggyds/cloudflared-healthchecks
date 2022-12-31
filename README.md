@@ -1,15 +1,38 @@
 # cloudflared-healtchecks.io
-A docker image running healthchecks.io and cloudflared to run on mogenius.
+A docker image running healthchecks.io and cloudflared to run on mogenius.\
+Version tag fe. v2.5-2022.12.1 = (healthchecks version)-(cloudflared version)\
+There is a daily check for new version of cloudflared or healthchecks
 
-To do
-  create actions pipeline the follow cloudflared and healtchecks releases
+Builds image and starts container
+
+	docker-compose up
+
+Just builds the image
+
+	docker-compose build --no-cache
+
+Force build
+
+	docker-compose up --build
+
+Skip build
+
+	docker-compose up --no-build
+
+For a more detailed output set BUILDKIT_PROGRESS\
+Shell
+
+  	export BUILDKIT_PROGRESS=plain
+Powershell
+  
+ 	$env:BUILDKIT_PROGRESS="plain" 
 
 ## Docker Compose
 ````
 ---
-version: "3"
+version: '3.9'
 services:
-  healthchecks:
+  cloudflared-healthchecks:
     container_name: cloudflared-healthchecks
     environment:
       SECRET_KEY: "YOUR_SECRET_KEY"
@@ -32,4 +55,17 @@ services:
     image: ziggyds/cloudflared-healthchecks:latest
     restart: unless-stopped
 
+  cloudflared-healthchecks-build:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      labels:
+        CLOUDFLARED: 2022.12.1
+        HEALTHCHECKS: v2.5
+      args:
+        CLOUDFLARED: 2022.12.1
+        HEALTHCHECKS: v2.5
+        # not working use: BUILDKIT_PROGRESS=plain docker-compose build --no-cache
+        # progress: plain
+        # no-cache: true
 ````

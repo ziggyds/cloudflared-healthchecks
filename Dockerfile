@@ -1,17 +1,17 @@
 # Get latest healthchecks release and unzip it
 FROM ziggyds/alpine-utils:latest AS init
+ARG HEALTHCHECKS
+ARG CLOUDFLARED
 WORKDIR /healthchecks
-RUN export LATEST_RELEASE=$(curl -s https://api.github.com/repos/healthchecks/healthchecks/releases/latest | grep "tag_name" | cut -d'"' -f4) && \
-	echo $LATEST_RELEASE && \
-    wget https://github.com/healthchecks/healthchecks/archive/refs/tags/$LATEST_RELEASE.zip && \
-    unzip $LATEST_RELEASE && rm $LATEST_RELEASE.zip
+RUN echo ${HEALTHCHECKS} && wget https://github.com/healthchecks/healthchecks/archive/refs/tags/${HEALTHCHECKS}.zip && \
+    unzip ${HEALTHCHECKS} && rm ${HEALTHCHECKS}.zip
 # Get latest cloudflared release
 WORKDIR /cloudflared
-RUN wget https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-amd64.deb
+# Since the package doesn't contain the version in its name, the ARG is not necessary
+RUN echo ${CLOUDFLARED} && wget https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-amd64.deb
 
 ### Build healthchecks ###
 FROM python:3.11.0-slim-buster as builder
-ARG HEALTHCHECKS_VERSION=v2.5
 
 RUN apt update && apt install -y \
 	build-essential libpq-dev libmariadb-dev libffi-dev libssl-dev libcurl4-openssl-dev libpython3-dev 
