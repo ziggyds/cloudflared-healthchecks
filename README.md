@@ -1,7 +1,7 @@
 # cloudflared-healtchecks.io
 A docker image running healthchecks.io and cloudflared to run on mogenius.\
 Version tag fe. v2.5-2022.12.1 = (healthchecks version)-(cloudflared version)\
-There is a daily check for new version of cloudflared or healthchecks
+There is an actions workflow that runs daily and if a new version cloudflared or healthchecks has been released it will create a new image.
 
 Builds image and starts container
 
