@@ -79,6 +79,7 @@ jobs:
         name: Build and push
         uses: docker/build-push-action@v3
         with:
+          provenance: false # Breaking change introduced with 3.3.0 https://github.com/docker/build-push-action/releases/tag/v3.3.0, when an image is pushed since that version I can't retrieve the blob with labels anymore based on the digest via registry api, night have to look into an alternative way to do this 
           context: .
           file: ./Dockerfile
           labels: |
