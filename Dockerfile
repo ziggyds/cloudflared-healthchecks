@@ -14,7 +14,7 @@ RUN echo ${CLOUDFLARED} && wget https://github.com/cloudflare/cloudflared/releas
 FROM python:3.11.0-slim-buster as builder
 
 RUN apt update && apt install -y \
-	build-essential libpq-dev libmariadb-dev libffi-dev libssl-dev libcurl4-openssl-dev libpython3-dev 
+	build-essential libpq-dev libmariadb-dev libffi-dev libssl-dev libcurl4-openssl-dev libpython3-dev default-libmysqlclient-dev
 
 # Copy latest healthchecks release, since there is only one subfolder that doesn't have consistent name I'm using */
 COPY --from=init /healthchecks/*/ /app
