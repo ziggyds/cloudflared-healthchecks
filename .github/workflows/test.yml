@@ -8,11 +8,11 @@ jobs:
     name: Tweeting
     runs-on: ubuntu-latest
     steps:
-      - uses: snow-actions/tweet@v1.4.0
+      - uses: nearform-actions/github-action-notify-twitter@master
         with:
-          status: "Hi, this is a test!"
-        env:
-          CONSUMER_API_KEY: ${{ secrets.X_CONSUMER_API_KEY }}
-          CONSUMER_API_SECRET_KEY: ${{ secrets.X_CONSUMER_API_SECRET }}
-          ACCESS_TOKEN: ${{ secrets.X_ACCESS_TOKEN }}
-          ACCESS_TOKEN_SECRET: ${{ secrets.X_ACCESS_TOKEN_SECRET }}
+          message: |
+            Hi, this is a test!
+          twitter-app-key: ${{ secrets.X_CONSUMER_API_KEY }}
+          twitter-app-secret: ${{ secrets.X_CONSUMER_API_SECRET }}
+          twitter-access-token: ${{ secrets.X_ACCESS_TOKEN }}
+          twitter-access-token-secret: ${{ secrets.X_ACCESS_TOKEN_SECRET }}
