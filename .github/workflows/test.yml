@@ -12,4 +12,7 @@ jobs:
         with:
           text: |
             Hi, this is a test!
-          bearer-token: ${{ secrets.X_BEARER_TOKEN }}
+          consumer-key: ${{ secrets.X_API_KEY }}
+          consumer-secret: ${{ secrets.X_API_KEY_SECRET }}
+          access-token: ${{ secrets.X_ACCESS_TOKEN }}
+          access-token-secret: ${{ secrets.X_ACCESS_TOKEN_SECRET }}
