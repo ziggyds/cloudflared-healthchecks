@@ -5,15 +5,14 @@ on:
 
 jobs:
   X:
-    name: cloudflared-healthchecks image
+    name: Tweeting
     runs-on: ubuntu-latest
     steps:
-      - uses: ethomson/send-tweet-action@v1
+      - uses: snow-actions/tweet@v1.4.0
         with:
           status: "Hi, this is a test!"
-          consumer-key: ${{ secrets.X_CONSUMER_API_KEY }}
-          consumer-secret: ${{ secrets.X_CONSUMER_API_SECRET }}
-          access-token: ${{ secrets.X_ACCESS_TOKEN }}
-          access-token-secret: ${{ secrets.X_ACCESS_TOKEN_SECRET }}
-
-
+        env:
+          CONSUMER_API_KEY: ${{ secrets.X_CONSUMER_API_KEY }}
+          CONSUMER_API_SECRET_KEY: ${{ secrets.X_CONSUMER_API_SECRET }}
+          ACCESS_TOKEN: ${{ secrets.X_ACCESS_TOKEN }}
+          ACCESS_TOKEN_SECRET: ${{ secrets.X_ACCESS_TOKEN_SECRET }}
