@@ -8,7 +8,7 @@ jobs:
     name: Tweeting
     runs-on: ubuntu-latest
     steps:
-      - uses: smapiot/send-tweet-v2-action@v2
+      - uses: smapiot/send-tweet-v2-action@v1
         with:
           status: |
             Hi, this is a test!
