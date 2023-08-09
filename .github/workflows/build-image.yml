@@ -77,7 +77,7 @@ jobs:
         uses: docker/setup-buildx-action@v2
       -
         name: Build and push
-        uses: docker/build-push-action@v3
+        uses: docker/build-push-action@v4
         with:
           provenance: false # Breaking change introduced with 3.3.0 https://github.com/docker/build-push-action/releases/tag/v3.3.0, when an image is pushed since that version I can't retrieve the blob with labels anymore based on the digest via registry api, night have to look into an alternative way to do this 
           context: .
@@ -92,3 +92,16 @@ jobs:
           tags: |
             ${{ secrets.DOCKERHUB_USERNAME }}/${{ github.event.repository.name }}:${{ needs.init.outputs.healthchecks }}-${{ needs.init.outputs.cloudflared }}
             ${{ secrets.DOCKERHUB_USERNAME }}/${{ github.event.repository.name }}:latest
+      - 
+        name: tweet new release
+        uses: dart-actions/tweet@v1.0.0
+        with:
+          text: |
+            A new version of cloudflared-healtchecks has been released!
+            docker pull ${{ secrets.DOCKERHUB_USERNAME }}/${{ github.event.repository.name }}:${{ needs.init.outputs.healthchecks }}-${{ needs.init.outputs.cloudflared }}
+          consumer-key: ${{ secrets.X_API_KEY }}
+          consumer-secret: ${{ secrets.X_API_KEY_SECRET }}
+          access-token: ${{ secrets.X_ACCESS_TOKEN }}
+          access-token-secret: ${{ secrets.X_ACCESS_TOKEN_SECRET }}
+
+
