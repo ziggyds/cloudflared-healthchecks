@@ -1,0 +1,19 @@
+name: Tweet test
+on:
+  # Manueel starte
+  workflow_dispatch:
+
+jobs:
+  X:
+    name: cloudflared-healthchecks image
+    runs-on: ubuntu-latest
+    steps:
+      - uses: ethomson/send-tweet-action@v1
+        with:
+          status: "Hi, this is a test!"
+          consumer-key: ${{ secrets.X_CONSUMER_API_KEY }}
+          consumer-secret: ${{ secrets.X_CONSUMER_API_SECRET }}
+          access-token: ${{ secrets.X_ACCESS_TOKEN }}
+          access-token-secret: ${{ secrets.X_ACCESS_TOKEN_SECRET }}
+
+
