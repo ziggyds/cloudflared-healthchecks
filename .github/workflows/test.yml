@@ -8,11 +8,8 @@ jobs:
     name: Tweeting
     runs-on: ubuntu-latest
     steps:
-      - uses: smapiot/send-tweet-v2-action@v1
+      - uses: dart-actions/tweet@v1.0.0
         with:
-          status: |
+          text: |
             Hi, this is a test!
-          consumer-key: ${{ secrets.X_API_KEY }}
-          consumer-secret: ${{ secrets.X_API_KEY_SECRET }}
-          access-token: ${{ secrets.X_ACCESS_TOKEN }}
-          access-token-secret: ${{ secrets.X_ACCESS_TOKEN_SECRET }}
+          bearer-token: ${{ secrets.X_BEARER_TOKEN }}
